@@ -1,13 +1,15 @@
 ## Preview (Dark & Light)
 
-| | |
-| :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/7f9c7fd4-6e10-4af0-b387-9c0e5a3c23cb" width="100%" /> | <img src="https://github.com/user-attachments/assets/0cc02378-f44d-4426-a026-ebb993bd8a2d" width="100%" /> |
+### Dark Theme (Material)
+<img src="https://github.com/user-attachments/assets/7f9c7fd4-6e10-4af0-b387-9c0e5a3c23cb" width="100%" />
+
+### Light Theme (One Light)
+<img src="https://github.com/user-attachments/assets/0cc02378-f44d-4426-a026-ebb993bd8a2d" width="100%" />
 
 ---
 
 Personal Doom Emacs configuration for GNU/Linux (CachyOS).
-Optimized for Music Pedagogy academic research, personal note-taking and software development./>
+Optimized for Music Pedagogy academic research, personal note-taking and software development.
 
 ## 0x01: Technical Stack
 - **Framework:** Doom Emacs
