@@ -20,19 +20,6 @@
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-mode-hook #'org-appear-mode))
 
-(defun diego/apply-org-styles ()
-  "Asegura que bloques, citas y niveles se vean correctamente en cualquier tema."
-  (custom-set-faces
-   '(org-block ((t (:inherit default :background nil :extend t))))
-   '(org-block-begin-line ((t (:inherit org-meta-line :slant italic :background nil))))
-   '(org-block-end-line ((t (:inherit org-block-begin-line :background nil))))
-   '(org-quote ((t (:inherit default :background nil :slant italic :extend t))))
-   '(org-level-1 ((t (:foreground "#ff69b4" :height 1.3 :weight bold))))
-   '(org-level-2 ((t (:height 1.1 :weight semi-bold))))
-   '(org-table ((t (:inherit fixed-pitch :family "JetBrains Mono"))))))
-
-(add-hook 'doom-load-theme-hook #'diego/apply-org-styles)
-
 ;; --- 4. PAQUETES EXTRAS (Nyan Cat) ---
 (use-package! nyan-mode
   :config
@@ -42,12 +29,9 @@
 ;; --- 5. MODO ESCRITURA (Zen) ---
 (after! writeroom
   (setq writeroom-width 90
-        writeroom-center-fixed-width t)
-  (add-hook 'writeroom-mode-hook
-            (lambda ()
-              (run-with-timer 0.1 nil
-                             (lambda () (display-line-numbers-mode -1))))))
+        writeroom-center-fixed-width t))
 
+;; TODO Eliminar line numbers (o ocultarlo)
 ;; --- 6. TOGGLE THEME (Light/Dark) ---
 (defun diego/toggle-theme ()
   "Alterna entre doom-material y doom-one-light de forma limpia."
