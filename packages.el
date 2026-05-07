@@ -53,7 +53,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! org-modern)
 (package! org-appear)
-(package! material-theme)
-(package! nyan-mode)
+(package! auto-dark)
+(package! org-roam-ui)
+(package! doric-themes)
+(package! modus-themes)
+(package! show-font :recipe (:host github :repo "protesilaos/show-font"))

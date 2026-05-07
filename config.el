@@ -1,57 +1,38 @@
-;; config.el --- Configuración de diegoveraniego ---
+;; config.el --- Configuración de Diego ---
 
 ;; --- 1. IDENTIFICACIÓN y UI ---
 (setq user-full-name "Diego"
-      display-line-numbers-type 'relative)
+      display-line-numbers-type 'nil)
 
-(setq doom-theme 'doom-material)
-(setq fancy-splash-image (expand-file-name "splash_imgs/emacs_dark.png" doom-private-dir))
-(setq +doom-dashboard-banner-file fancy-splash-image)
+(setq doom-theme 'modus-vivendi)
+
+;; Temas Dark/Light con auto-dark
+(use-package! auto-dark
+  :hook (after-init . auto-dark-mode)
+  :config
+  (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
+  (setq auto-dark-polling-interval 600))
 
 ;; --- 2. FUENTES ---
-(setq doom-font (font-spec :family "JetBrains Mono" :size 14)
-      doom-variable-pitch-font (font-spec :family "iA Writer Duo S" :size 14))
+(setq doom-font (font-spec :family "Aporetic Sans Mono" :size 14)
+      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 14))
 
 ;; --- 3. ORG MODE ---
 (after! org
   (setq org-directory "~/org/"
         org-hide-emphasis-markers t)
 
-  (add-hook 'org-mode-hook #'org-modern-mode)
-  (add-hook 'org-mode-hook #'org-appear-mode))
+  (add-to-list 'org-modules 'org-habit)
+  (add-hook 'org-mode-hook #'org-appear-mode)
 
-;; --- 4. PAQUETES EXTRAS (Nyan Cat) ---
-(use-package! nyan-mode
-  :config
-  (setq nyan-bar-length 10)
-  (nyan-mode +1))
+  ;; --- Soporte para LilyPond en bloques de código ---
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   (append org-babel-load-languages
+           '((lilypond . t)))))
 
 ;; --- 5. MODO ESCRITURA (Zen) ---
 (after! writeroom
   (setq writeroom-width 90
-        writeroom-center-fixed-width t))
-
-;; TODO Eliminar line numbers (o ocultarlo)
-;; --- 6. TOGGLE THEME (Light/Dark) ---
-(defun diego/toggle-theme ()
-  "Alterna entre doom-material y doom-one-light de forma limpia."
-  (interactive)
-  (if (eq doom-theme 'doom-material)
-      (setq doom-theme 'doom-one-light
-            fancy-splash-image (expand-file-name "splash_imgs/emacs_light.png" doom-private-dir))
-    (setq doom-theme 'doom-material)
-    (setq fancy-splash-image (expand-file-name "splash_imgs/emacs_dark.png" doom-private-dir)))
-
-  (load-theme doom-theme t)
-  ;; Esta es la única función que Doom necesita oficialmente para refrescarse
-  (doom/reload-theme)
-
-  (setq +doom-dashboard-banner-file fancy-splash-image)
-  (when (get-buffer "+doom-dashboard")
-    (with-current-buffer "+doom-dashboard"
-      (+doom-dashboard-reload t)))
-  (message "Cargado: %s" doom-theme))
-
-(map! :leader
-      :desc "Toggle dark/light theme"
-      "t t" #'diego/toggle-theme)
+        writeroom-center-fixed-width t)
+(add-hook 'writeroom-mode-hook #'doom-disable-line-numbers-h))
