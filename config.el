@@ -1,16 +1,16 @@
-;; config.el --- Configuración de Diego ---
+;;; config.el:
 
 ;; --- 1. IDENTIFICACIÓN y UI ---
-(setq user-full-name "Diego"
-      display-line-numbers-type 'nil)
+(setq user-full-name "diego"
+      display-line-numbers-type 'relative)
 
-(setq doom-theme 'modus-vivendi)
-
+(setq doom-theme 'doom-material)
+(setq fancy-splash-image "~/.config/doom/pianissimo.svg")
 ;; Temas Dark/Light con auto-dark
 (use-package! auto-dark
   :hook (after-init . auto-dark-mode)
   :config
-  (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
+  (setq auto-dark-themes '((doom-material) (doom-one-light)))
   (setq auto-dark-polling-interval 600))
 
 ;; --- 2. FUENTES ---
@@ -36,3 +36,4 @@
   (setq writeroom-width 90
         writeroom-center-fixed-width t)
 (add-hook 'writeroom-mode-hook #'doom-disable-line-numbers-h))
+
