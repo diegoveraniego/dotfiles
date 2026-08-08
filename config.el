@@ -5,7 +5,7 @@
       display-line-numbers-type 'relative)
 
 (setq doom-theme 'doom-material)
-(setq fancy-splash-image "~/.config/doom/pianissimo.svg")
+(setq fancy-splash-image "~/.config/doom/splash_imgs/pianissimo.svg")
 ;; Temas Dark/Light con auto-dark
 (use-package! auto-dark
   :hook (after-init . auto-dark-mode)
